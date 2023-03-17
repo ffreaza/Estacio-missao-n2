@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-br">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Página com receitas">
+  <meta name="author" content="Felipe Freaza Fidalgo">
+  <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+  <title>Receitas</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+  <link href="css\bootstrap.min.css" rel="stylesheet">
+  <style>
+    img {
+      width: 300px;
+      height: 200px; 
+    }  
+    body {
+      max-width:1200px; 
+
+    } 
+  </style>
+</head>
+<body background="red">
+</head>
+<body class="bg-warning container-fluid">
+  <h1 class="text-center">Receitas</h1>
+  <div id="pnlCatalogo" class="d-flex flex-wrap"></div> 
+  <script>
+    var receitas = [
+            {
+                "titulo": "Lasanha",
+                "imagem": "lasanha.jpg",
+                "preparo": "Instruções de preparo da receita",
+                "ingredientes": ['1 kg de carne moída',
+                '250 g de massa de lasanha <br>pronta pré-cozida',
+                '400 g de molho de <br>tomate pronto',
+                '350 g de queijo mussarela',
+                '300 g de presunto',
+                '1 cebola grande picada',
+                '4 dentes de alho picados',
+                'Sal à gosto',
+                '2 sachês de Sazon de carne',
+                'Óleo (4 ou 5 <br>colheres de sopa)']
+            },
+            {
+                "titulo": "Panquecas",
+                "imagem": "panqueca.jpg",
+                "preparo": "Instruções de preparo da receita",
+                "ingredientes": ['1 xícara e 1/2 de chá de <br>farinha de trigo',
+                '1 xícara e 1/2 de leite',
+                '1 banana nanica <br>bem madura',
+                '2 colheres de sobremesa de <br>fermento em pó Royal',
+                '1 colher rasa de café de sal',
+                '1 colher de café de essência <br>de baunilha',
+                '2 ovos levemente batidos <br>(para não criar espuma)',
+                'Óleo para untar',
+                '2 colheres de sobremesa de <br>açúcar cristal',
+                '2 colheres de sopa <br>de manteiga',
+                ]
+            },
+            {
+              "titulo": "Torta de limão",
+              "imagem": "torta de limão.jpg",
+              "preparo": "Instruções de preparo da receita ",
+              "ingredientes": ['395 g de leite condensado',
+              '200 g de creme de leite',
+              '1/2 copo de suco de limão <br>taiti',
+              '135 g de chocolate branco',
+              '200 g de creme de leite']
+            },
+            {
+              "titulo": "Torta de Maçã",
+              "imagem": "torta de maçã.jpg",
+              "preparo": "Instruções de preparo da receita ",
+              "ingredientes": ['1 caixa de creme de leite',
+              '1 lata de leite condensado',
+              '1 lata (a mesma medida do <br>leite condensado) de leite',
+              '3 colheres de amido <br>de milho',
+              '6 maçãs sem casca <br>cortadas em fatias pequenas',
+              '8 colheres de açúcar',
+              '1 gema de ovo']
+            }
+          
+        ];
+        function getListaIngredientes(receita) {
+            let lista = "<ul>";
+            for (let i = 0; i < receita.ingredientes.length; i++) {
+                lista += "<li>" + receita.ingredientes[i] + "</li>";
+            }
+            lista += "</ul>";
+            return lista;
+        }
+        function getCard(receita) {
+            let card = "<div class='card'>";
+            card += "<img src='" + receita.imagem + "' class='card-img-top'>";
+            card += "<div class='card-body'>";
+            card += "<h5 class='card-title'>" + receita.titulo + "</h5>";
+            card += "<p class='card-text'>" + receita.preparo + "</p>";
+            card += getListaIngredientes(receita);
+            card += "</div>";
+            card += "</div>";
+            return card;
+        }
+        function preencheCatalogo() {
+            for (let i = 0; i < receitas.length; i++) {
+                document.getElementById("pnlCatalogo").innerHTML += getCard(receitas[i]);
+            }
+        }
+        window.onload = preencheCatalogo;
+    </script>
+</body>
+</html>

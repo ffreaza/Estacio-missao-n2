@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Felipe Freaza Fidalgo">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Usuários</title>
+</head>
+<body class="container bg-warning">
+    <h1>Usuários de Teste</h1>
+    <p>Os Usuários desta exemplo são fornecidos pela API de testes reqres.in</p>
+    <div id="usuarios" class="container-fluid">
+         <!-- Definindo uma seção do documento com a classe CSS container-fluid -->
+        <div class="row">
+            <!-- Criando uma linha para a disposição dos elementos -->
+            <div v-for="(user,index) in users" :key="index" class="col-sm-3 m-3">
+                <!-- Definindo uma coluna com 3 espaços no grid para cada usuário -->
+                <div class="card">
+                    <!-- Criando uma caixa de cartão para exibir informações sobre o usuário -->
+                    <img :src="user.avatar" class="card-img-top">
+                    <!-- Incluindo uma imagem do usuário -->
+                    <div class="card-body">
+                        <!-- Criando um corpo para o cartão -->
+                        <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+                        <!-- Incluindo o nome e sobrenome do usuário -->
+                        <p class="card-text">{{user.email}}</p>
+                        <!-- Incluindo o endereço de email do usuário -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Incluindo o arquivo JavaScript Vue.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Incluindo o arquivo JavaScript jQuery -->
+    <script>
+        var app = new Vue({
+            el: '#usuarios',
+            data: function() {
+                return {
+                    users: []
+                }
+            },
+            mounted() {
+                this.loadUsers();
+            },
+            methods: {
+                loadUsers() {
+                    $.ajax({
+                        url: 'https://reqres.in/api/users?per_page=03',
+                        type: 'GET',
+                        success: (response) => {
+                            this.users = response.data;
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
